@@ -11,7 +11,7 @@ export function ItemRecord(title) {
     this.transType = 0;
 }
 
-export default function NewItem({ addNewRecord }) {
+export default function NewItem({ addNewRecord, editItem }) {
     const [editMode, setEditMode] = useState(false);
 
     const [title, setTitle] = useState("");
@@ -21,11 +21,20 @@ export default function NewItem({ addNewRecord }) {
     const [isIncome, setIsIncome] = useState(false);
 
     const onClickAddBTN = () => {
-        const a = 2;
-        const newRecord = new ItemRecord("sfdsf");
-        console.log(newRecord.name);
+        //const a = 2;
+        //const newRecord = new ItemRecord("sfdsf");
+        //console.log(newRecord.name);
 
-        addNewRecord(newRecord);
+        const newItem = {
+            id:0,
+            title:title,
+            amount:amount,
+            category:category,
+            payType:payType,
+            isIncome:isIncome,
+        };
+
+        addNewRecord(newItem);
     }
 
     const onClickNewRecordBTN = () => {
@@ -62,7 +71,7 @@ export default function NewItem({ addNewRecord }) {
             )}
             {editMode &&
                 (<div>
-                    <label htmlFor="">New Record</label>
+                    <label htmlFor="">New Item</label>
                     <div>
                         <div>
                             <div>
@@ -83,9 +92,11 @@ export default function NewItem({ addNewRecord }) {
                         <div>
                             <label htmlFor="">Category </label>
                             <select value={category} onChange={e => onCategoryChange(e.target.value)} className="select-header">
-                                <option value="None">None</option>
-                                <option value="Food">Food</option>
-                                <option value="2024">2024</option>
+                                <option value="0">None</option>
+                                <option value="1">Food</option>
+                                <option value="2">Drug</option>
+                                <option value="3">General items</option>
+                                <option value="4">Other</option>
                             </select>
                         </div>
                         <div>

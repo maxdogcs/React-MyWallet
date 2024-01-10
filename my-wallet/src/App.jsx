@@ -11,11 +11,33 @@ import ItemFilter from './components/ItemFilter'
 function App() {
   const [count, setCount] = useState(0)
 
+  const [itemID, setItemID] = useState(1);
+  const [itemList, setItemList] = useState([]);
+
+  function getNewItemID() {
+    setItemID(itemID + 1);
+    return itemID;
+  }
+  const addNewItem = (newItem) => {
+    newItem.id = getNewItemID();
+    setItemList([newItem, ...itemList]);
+  }
+  const editItem = (item) => {
+    const targetItemIndex = itemList.findIndex(x.id == item.id);
+
+    itemList[targetItemIndex] = item;
+    setItemList([...itemList]);
+  }
+  const deleteItem = (item) => {
+    const filteredItemList = itemList.filter(x => x.id !== item.id);
+    setItemList([...filteredItemList]);
+  }
+
   return (
     <>
       <Header />
-      <NewItem />
-      <ItemFilter />
+      <NewItem addNewItem={addNewItem} editItem={editItem} />
+      <ItemFilter itemList={itemList} />
 
 
       {/* <div>
