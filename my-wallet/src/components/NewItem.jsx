@@ -11,12 +11,12 @@ export function ItemRecord(title) {
     this.transType = 0;
 }
 
-export default function NewItem({ addNewRecord, editItem }) {
+export default function NewItem({ addNewItem, editItem, deleteItem }) {
     const [editMode, setEditMode] = useState(false);
 
     const [title, setTitle] = useState("");
     const [amount, setAmount] = useState(0);
-    const [category, setCategory] = useState("none");
+    const [category, setCategory] = useState("1");
     const [payType, setPayType] = useState(0);
     const [isIncome, setIsIncome] = useState(false);
 
@@ -24,6 +24,8 @@ export default function NewItem({ addNewRecord, editItem }) {
         //const a = 2;
         //const newRecord = new ItemRecord("sfdsf");
         //console.log(newRecord.name);
+
+        console.log(title+":"+amount+":"+category+":"+payType+":"+isIncome);
 
         const newItem = {
             id:0,
@@ -34,7 +36,7 @@ export default function NewItem({ addNewRecord, editItem }) {
             isIncome:isIncome,
         };
 
-        addNewRecord(newItem);
+        addNewItem(newItem);
     }
 
     const onClickNewRecordBTN = () => {
@@ -92,7 +94,7 @@ export default function NewItem({ addNewRecord, editItem }) {
                         <div>
                             <label htmlFor="">Category </label>
                             <select value={category} onChange={e => onCategoryChange(e.target.value)} className="select-header">
-                                <option value="0">None</option>
+                              {/* <option value="0">None</option>*/}
                                 <option value="1">Food</option>
                                 <option value="2">Drug</option>
                                 <option value="3">General items</option>

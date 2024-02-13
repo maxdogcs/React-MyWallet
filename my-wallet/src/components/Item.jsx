@@ -1,6 +1,13 @@
 
 
-export default function Item()
+export default function Item(props)
 {
-    return(<>item</>);
+    return(
+    <div>
+    <label htmlFor="">item</label>
+    <label> {props.id}</label>
+    <label> {props.title}</label>
+
+    </div>
+    );
 }
